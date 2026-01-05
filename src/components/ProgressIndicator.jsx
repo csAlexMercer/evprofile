@@ -48,9 +48,9 @@ export default function ProgressIndicator({ currentStep }) {
                         w-16 h-16 rounded-full flex items-center justify-center
                         transition-all duration-300
                         ${currentStep >= step.number
-                            ? 'bg-green-500 text-white'
+                            ? 'bg-[#38EF0A] text-white'
                             : 'bg-white text-gray-400'}
-                        ${currentStep === step.number ? 'ring-4 ring-green-300' : ''}
+                        ${currentStep === step.number ? 'ring-4 ring-[#38EF0A]' : ''}
                         `}
                     >
                         {currentStep > step.number ? (
@@ -69,7 +69,7 @@ export default function ProgressIndicator({ currentStep }) {
                         className={`
                         h-[3px] w-40 mx-4
                         transition-all duration-300
-                        ${currentStep > step.number ? 'bg-green-500' : 'bg-gray-400'}
+                        ${currentStep > step.number ? 'bg-[#38EF0A]' : 'bg-gray-400'}
                         `}
                     />
                     )}

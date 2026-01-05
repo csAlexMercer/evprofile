@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react"
 import ProgressIndicator from "./ProgressIndicator";
+import KYCVerificationForm from "./KYCVerificationForm";
 import PersonalDetailsForm from "./PersonalDetailsForm";
 
 export default function EVProfileForm(){
@@ -14,7 +15,51 @@ export default function EVProfileForm(){
         phoneNumber: '',
         homeAddress: '',
         pincode: '',
-    })
+
+        //KYC Verification
+        aadhaarNumber: '',
+        aadhaarFile: null,
+        panNumber: '',
+        panFile: null,
+        drivingLicenseNumber: '',
+        drivingLicenseFile: null,
+        evPlateNumber: '',
+        evPlateFile: null,
+        rcFile: null,
+
+        //Bank Details
+        accountHolderName: '',
+        bankName: '',
+        accountNumber: '',
+        ifscCode: '',
+        accountType: '',
+
+        //Account Activation
+        password: '',
+        confirmPassword: '',
+        agreeToTerms: false,
+        liveSelfieCaptured: false,
+    });
+
+    const updateFormData = (field, value) => {
+        setFormData(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const handleContinue = () => {
+        if(currentStep < 4){
+            setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const handleBack = () => {
+        if (currentStep > 1){
+            setCurrentStep(currentStep - 1);
+        }
+    };
+
     //background images
     const backgrounds = [
         '/images/bg-personal.jpg',
@@ -33,16 +78,24 @@ export default function EVProfileForm(){
             }}
             />
             <div className="absolute inset-0 bg-black/45" />
-            <div className="relative z-10 w-full h-full flex flex-col items-center pt-20">
+            <div className="relative z-10 w-full h-100 flex flex-col items-center pt-20">
                 <ProgressIndicator currentStep={currentStep}/>
                 {/*Form Container*/}
-                <div className="mt-32">
+                <div className="mt-20">
                     {currentStep === 1 && (
                         <PersonalDetailsForm
                             formData={formData}
                             updateFormData={updateFormData}
                             onContinue={handleContinue}
-
+                        />
+                    )}
+                    {currentStep === 2 && (
+                        <KYCVerificationForm 
+                            formData = {formData}
+                            updateFormData={updateFormData}
+                            onContinue={handleContinue}
+                            onBack={handleBack}
+                        />
                     )}
                 </div>
 
