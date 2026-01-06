@@ -3,10 +3,10 @@ import { useState } from "react";
 export default function PersonalDetailsForm({formData, updateFormData, onContinue}){
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(errors.phoneNumber || errors.pincode || !formData.fullName || !formData.email || !formData.phoneNumber || !formData.homeAddress || !formData.pincode){
-            alert('Please fill in all field');
-            return;
-        }
+        // if(errors.phoneNumber || errors.pincode || !formData.fullName || !formData.email || !formData.phoneNumber || !formData.homeAddress || !formData.pincode){
+        //     alert('Please fill in all field');
+        //     return;
+        // }
         onContinue();
     }
     const [errors, setErrors] = useState({
@@ -163,7 +163,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
             {/* Continue Button */}
             <button
             type="submit"
-            className="w-84 mx-auto bg-[#38EF0A] hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-colors duration-180 mt-6"
+            className="w-84 mx-auto bg-[#38EF0A] text-white font-semibold py-3 rounded-2xl shadow-lg hover:shadow-xl transition-colors duration-180 mt-6"
             >
             Continue
             </button>

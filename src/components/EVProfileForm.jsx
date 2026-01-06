@@ -3,6 +3,8 @@ import { useState } from "react"
 import ProgressIndicator from "./ProgressIndicator";
 import KYCVerificationForm from "./KYCVerificationForm";
 import PersonalDetailsForm from "./PersonalDetailsForm";
+import BankDetailsForm from "./BankDetailsForm";
+import AccountActivationForm from "./AccountActivationForm"
 
 export default function EVProfileForm(){
     const [currentStep, setCurrentStep] = useState(1); //form step
@@ -92,6 +94,22 @@ export default function EVProfileForm(){
                     {currentStep === 2 && (
                         <KYCVerificationForm 
                             formData = {formData}
+                            updateFormData={updateFormData}
+                            onContinue={handleContinue}
+                            onBack={handleBack}
+                        />
+                    )}
+                    {currentStep === 3 && (
+                        <BankDetailsForm
+                            formData= {formData}
+                            updateFormData={updateFormData}
+                            onContinue={handleContinue}
+                            onBack={handleBack}
+                        />
+                    )}
+                    {currentStep === 4 && (
+                        <AccountActivationForm
+                            formData={formData}
                             updateFormData={updateFormData}
                             onContinue={handleContinue}
                             onBack={handleBack}
