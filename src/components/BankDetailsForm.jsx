@@ -135,7 +135,7 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-4 pt-4 mt-2">
                     <button
                         type="button"
                         onClick={onBack}

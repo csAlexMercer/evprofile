@@ -8,6 +8,11 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+            // if (!formData.aadhaarNumber || !formData.panNumber || !formData.drivingLicenseNumber || 
+            //         !formData.evPlateNumber) {
+            //     alert('Please fill in all fields and upload required documents');
+            //     return;
+            // }
         onContinue();
 
     }

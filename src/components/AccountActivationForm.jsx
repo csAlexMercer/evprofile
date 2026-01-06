@@ -1,18 +1,24 @@
 'use client';
 
 import { useState } from 'react';
+import { useCamera } from '@/hooks/useCamera';
 
 export default function AccountActivationForm({ formData, updateFormData, onBack, onContinue }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const {videoRef, canvasRef, startCamera, capturePhoto, image} = useCamera();
 
-  const handleCaptureSelfie = () => {
-    // In a real app, this would open camera
-    // For UI purposes, we just mark as captured
-    updateFormData('liveSelfieCaptured', true);
-    alert('Live selfie captured successfully!');
-  };
+  const handleCaptureSelfie = async () => {
+    await startCamera()
 
+    // wait for camera to initialize
+    setTimeout(() => {
+      const selfie = capturePhoto()
+      updateFormData('liveSelfieCaptured', true)
+      updateFormData('liveSelfieImage', selfie)
+    }, 800)
+  }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -170,17 +176,32 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
           </label>
           <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-6 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-white border-2 border-green-500 rounded-lg flex items-center justify-center">
-                {formData.liveSelfieCaptured ? (
-                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+              <div className="w-16 h-16 bg-white border-2 border-green-500 rounded-lg overflow-hidden flex items-center justify-center">
+                {image ? (
+                  <img
+                    src={image}
+                    alt="Captured selfie"
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <svg
+                    className="w-8 h-8 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                 )}
-              </div>
+              </div>  
+              <video ref={videoRef} autoPlay playsInline className="hidden" />
+              <canvas ref={canvasRef} className="hidden" />
+
               <span className="text-sm text-gray-600">
                 {formData.liveSelfieCaptured ? 'Selfie captured ✓' : 'No selfie captured'}
               </span>
@@ -188,7 +209,7 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
             <button
               type="button"
               onClick={handleCaptureSelfie}
-              className="bg-[#38EF0A] hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm font-medium"
+              className="bg-[#38EF0A] text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm font-medium"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
