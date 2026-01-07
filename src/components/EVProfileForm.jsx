@@ -1,4 +1,5 @@
 'use client';
+import {Headset} from 'lucide-react';
 import { useState } from "react"
 import ProgressIndicator from "./ProgressIndicator";
 import KYCVerificationForm from "./KYCVerificationForm";
@@ -118,6 +119,11 @@ export default function EVProfileForm(){
                 </div>
 
             </div>
+            <button className="absolute bottom-8 right-8 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center">
+                <Headset className='w-11 h-11 text-[#38EF0A]'/>
+                </div>
+            </button>
         </div>
     )
 }

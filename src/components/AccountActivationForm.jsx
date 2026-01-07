@@ -2,10 +2,14 @@
 
 import { useState } from 'react';
 import { useCamera } from '@/hooks/useCamera';
+import OTPVerification from './OTPVerification';
+import SuccessModal from './SuccessModal';
 
 export default function AccountActivationForm({ formData, updateFormData, onBack, onContinue }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showOTP, setShowOTP] = useState(false);
+  const [showSuccess, setShowSuccess] = useState();
   const {videoRef, canvasRef, startCamera, capturePhoto, image} = useCamera();
 
   const handleCaptureSelfie = async () => {
@@ -49,8 +53,20 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
     // }
 
     // // All validations passed
-    alert('Account activation successful! Your EV profile is complete.');
-    // console.log('Form Data:', formData);
+    setShowOTP(true);
+    
+  };
+  const handleOTPVerify = (otpValue) => {
+    console.log('OTP Entered:', otpValue);
+    setShowOTP(false);
+    setShowSuccess(true);
+  };
+  
+  const handleOTPResend = () => {
+    console.log('Resending OTP');
+  };
+  const handleSuccessContinue = () => {
+    setShowSuccess(false);
   };
 
   return (
@@ -237,6 +253,19 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
           </button>
         </div>
       </form>
+      {/* OTP Verification*/}
+      {showOTP && (
+        <OTPVerification
+          phoneNumber={formData.phoneNumber}
+          onVerify={handleOTPVerify}
+          onResend={handleOTPResend}
+        />
+      )}
+
+      {/* Success */}
+      {showSuccess && (
+        <SuccessModal onContinue={handleSuccessContinue} />
+      )}
     </div>
   );
 }

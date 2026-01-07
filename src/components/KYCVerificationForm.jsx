@@ -1,4 +1,5 @@
 'use client'
+
 export default function KYCVerificationForm({formData, updateFormData, onContinue, onBack}){
     const handleFileUpload = (field, fileField) => (e) => {
         const file = e.target.files[0];
@@ -48,6 +49,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                 onChange={(e) => updateFormData(numberField, e.target.value)}
                 placeholder={placeholder}
                 className="
+                pointer-event-none
                 w-full
                 pl-10 pr-28
                 py-3
@@ -65,7 +67,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
             />
 
             {/* Upload button (overlay) */}
-            <label className="absolute inset-y-0 right-2 flex items-center pointer-events-none">
+            <label className="absolute inset-y-0 right-2 flex items-center pointer-events-auto">
                 <input
                 type="file"
                 onChange={handleFileUpload(numberField, fileField)}
@@ -73,7 +75,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                 accept="image/*,.pdf"
                 />
                 <div className="
-                pointer-events-auto
+                
                 bg-[#38EF0A]
                 text-white
                 px-4 py-2
