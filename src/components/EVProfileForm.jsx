@@ -71,7 +71,7 @@ export default function EVProfileForm(){
         '/images/bg-activation.jpg',
     ]
     return (
-        <div className="relative w-[1440px] h-[958px] overflow-hidden">
+        <div className="lg:w-[1440px] lg:h-[958px] lg:min-h-0 relative w-full min-h-screen mx-auto overflow-hidden">
             <div
             className="absolute inset-0 bg-no-repeat bg-cover"
             style={{
@@ -81,10 +81,10 @@ export default function EVProfileForm(){
             }}
             />
             <div className="absolute inset-0 bg-black/45" />
-            <div className="relative z-10 w-full h-100 flex flex-col items-center pt-20">
+            <div className="relative z-10 w-full flex flex-col items-center pt-8 md:pt-12 lg:pt-20">
                 <ProgressIndicator currentStep={currentStep}/>
                 {/*Form Container*/}
-                <div className="mt-20">
+                <div className="mt-10 md:mt-12 lg:mt-20 w-full max-w-[480px] mx-auto">
                     {currentStep === 1 && (
                         <PersonalDetailsForm
                             formData={formData}
@@ -119,7 +119,7 @@ export default function EVProfileForm(){
                 </div>
 
             </div>
-            <button className="absolute bottom-8 right-8 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+            <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 w-12 h-12 lg:w-16 lg:h-16 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center">
                 <Headset className='w-11 h-11 text-[#38EF0A]'/>
                 </div>

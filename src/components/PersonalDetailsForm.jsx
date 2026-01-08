@@ -33,7 +33,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
         }))
     }
     return(
-        <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-[480px] h-[669px] p-6 flex flex-col">
+        <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
         {/* Logo and Title */}
         <div className="flex flex-col items-center mb-4">
             <div className="mb-2">

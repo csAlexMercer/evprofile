@@ -172,7 +172,7 @@ export default function CameraCaptureModal({ onCapture, onClose }) {
             {/* Countdown Display */}
             <div className="absolute bottom-12 left-0 right-0 flex justify-center z-20">
                 <div className="bg-white/90 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center">
-                <span className="text-4xl font-bold text-green-600">{countdown}</span>
+                <span className="text-4xl font-bold text-[#38EF0A]">{countdown}</span>
                 </div>
             </div>
             </div>
