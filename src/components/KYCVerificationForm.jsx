@@ -64,7 +64,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                         <div className="flex items-center gap-3">
                             {/* Input */}
                             <div className="relative flex-1">
-                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-700 flex items-center pointer-events-none">
+                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
                                     <FileText className='h-5 w-5'/>
                                 </div>
 
@@ -99,7 +99,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                         <div className="flex items-center gap-3">
                             {/* Input */}
                             <div className="relative flex-1">
-                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-700 flex items-center pointer-events-none">
+                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
                                     <FileText className='h-5 w-5'/>
                                 </div>
 
@@ -135,7 +135,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                         <div className="flex items-center gap-3">
                             {/* Input */}
                             <div className="relative flex-1">
-                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-700 flex items-center pointer-events-none">
+                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
                                     <FileText className='h-5 w-5'/>
                                 </div>
 
@@ -171,7 +171,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                         <div className="flex items-center gap-3">
                             {/* Input */}
                             <div className="relative flex-1">
-                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-700 flex items-center pointer-events-none">
+                                <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
                                     <FileText className='h-5 w-5'/>
                                 </div>
 
@@ -207,7 +207,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                         <div className="flex items-center gap-3">
                             {/* Read-only input */}
                             <div className="relative flex-1">
-                            <div className="absolute text-gray-700 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <div className="absolute text-gray-400 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FileText className='w-5 h-5'/>
                             </div>
 

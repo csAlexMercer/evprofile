@@ -60,7 +60,7 @@ export default function ProgressIndicator({ currentStep }) {
                     {index < steps.length - 1 && (
                     <div
                         className={`
-                        h-[3px] w-40 mx-4
+                        h-[3px] sm:w-5 md:w-10 lg:w-40 mx-4
                         transition-all duration-300
                         ${currentStep > step.number ? 'bg-[#38EF0A]' : 'bg-gray-400'}
                         `}
