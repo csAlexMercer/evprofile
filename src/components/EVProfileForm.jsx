@@ -83,7 +83,7 @@ export default function EVProfileForm(){
             <div className="relative z-10 w-full flex flex-col items-center pt-8 md:pt-12 lg:pt-20">
                 <ProgressIndicator currentStep={currentStep}/>
                 {/*Form Container*/}
-                <div className="bg-white/60 lg:bg-white/85  rounded-2xl mt-10 md:mt-12 lg:mt-20 w-full max-w-[380px]net lg:max-w-[480px] mx-auto">
+                <div className="bg-white/60 lg:bg-white/85  rounded-2xl mt-10 md:mt-12 lg:mt-20 w-full max-w-[380px] lg:max-w-[480px] mx-auto">
                     {currentStep === 1 && (
                         <PersonalDetailsForm
                             formData={formData}
