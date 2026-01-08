@@ -57,6 +57,7 @@ export default function OTPVerification({ phoneNumber, onVerify, onResend }) {
     if (otpValue.length === 6) {
       onVerify(otpValue);
     }
+    
   };
 
   const handleResend = () => {

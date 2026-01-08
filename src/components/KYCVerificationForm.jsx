@@ -1,5 +1,5 @@
 'use client'
-import {Upload, FileText} from 'lucide-react'
+
 export default function KYCVerificationForm({formData, updateFormData, onContinue, onBack}){
     const handleFileUpload = (fileField) => (e) => {
         const file = e.target.files[0];
@@ -7,13 +7,23 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
         updateFormData(fileField, file);
         }
     };
+    const isFormValid =
+        formData.aadhaarNumber &&
+        formData.panNumber &&
+        formData.drivingLicenseNumber &&
+        formData.evPlateNumber &&
+        formData.aadhaarFile &&
+        formData.panFile &&
+        formData.drivingLicenseFile &&
+        formData.evPlateFile &&
+        formData.rcFile;
+
     const handleSubmit = (e) => {
         e.preventDefault();
-            // if (!formData.aadhaarNumber || !formData.panNumber || !formData.drivingLicenseNumber || 
-            //         !formData.evPlateNumber) {
-            //     alert('Please fill in all fields and upload required documents');
-            //     return;
-            // }
+            if (!isFormValid) {
+                alert('Please fill in all fields and upload required documents');
+                return;
+            }
         onContinue();
 
     }
@@ -27,8 +37,10 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                     className="hidden"
                     accept="image/*,.pdf"
                 />
-                <div className="h-12 bg-[#38EF0A] text-white px-4 rounded-md cursor-pointer flex items-center gap-2 text-sm font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
-                    <Upload className='h-4 w-4'/>
+                <div className="h-12 bg-[#38EF0A] text-white px-4 rounded-md cursor-pointer flex items-center gap-1 text-sm font-semibold shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
+                    <svg className='h-5 w-5 text-white' width={24} height={24} viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M11 16V7.85l-2.6 2.6L7 9l5-5l5 5l-1.4 1.45l-2.6-2.6V16zm-5 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"></path>
+                    </svg>
                     Upload
                 </div>
             </label>
@@ -38,7 +50,7 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
 
 
     return (
-        <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
+        <div className="bg-black/30 lg:bg-black/20 rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
             <div className="flex flex-col items-center mb-4">
                 <div className="mb-2">
                     <img src="/logo.png" alt="ChargeFlow" className="h-16" />
@@ -65,13 +77,17 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                             {/* Input */}
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
-                                    <FileText className='h-5 w-5'/>
+                                    <svg className='w-5 h-5 text-gray-400' width={1024} height={1024} viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h160v64H320zm0 384h384v64H320z"></path>
+                                    </svg>
                                 </div>
 
                                 <input
                                     type="text"
                                     value={formData.aadhaarNumber}
-                                    onChange={(e) => updateFormData('aadhaarNumber', e.target.value)}
+                                    onChange={(e) => {const digitsOnly = e.target.value.replace(/\D/g, '')
+                                        updateFormData('aadhaarNumber', digitsOnly)
+                                    }}
                                     placeholder="Aadhaar Card Number"
                                     className="w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
                                 />
@@ -100,7 +116,9 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                             {/* Input */}
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
-                                    <FileText className='h-5 w-5'/>
+                                    <svg className='w-5 h-5 text-gray-400' width={1024} height={1024} viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h160v64H320zm0 384h384v64H320z"></path>
+                                    </svg>
                                 </div>
 
                                 <input
@@ -136,7 +154,9 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                             {/* Input */}
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
-                                    <FileText className='h-5 w-5'/>
+                                    <svg className='w-5 h-5 text-gray-400' width={1024} height={1024} viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h160v64H320zm0 384h384v64H320z"></path>
+                                    </svg>
                                 </div>
 
                                 <input
@@ -172,7 +192,9 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                             {/* Input */}
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 pl-3 text-gray-400 flex items-center pointer-events-none">
-                                    <FileText className='h-5 w-5'/>
+                                    <svg className='w-5 h-5 text-gray-400' width={1024} height={1024} viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h160v64H320zm0 384h384v64H320z"></path>
+                                    </svg>
                                 </div>
 
                                 <input
@@ -197,18 +219,16 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                             <label className="block text-sm font-bold text-black mb-1">
                                 RC (Registration Certificate)
                             </label>
-                            {formData.rcFile && (
-                                <p className="text-xs text-green-600 mt-1">
-                                ✓ {formData.rcFile.name}
-                                </p>
-                            )}
+                            
                         </div>
 
                         <div className="flex items-center gap-3">
                             {/* Read-only input */}
                             <div className="relative flex-1">
                             <div className="absolute text-gray-400 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <FileText className='w-5 h-5'/>
+                                <svg className='w-5 h-5 text-gray-400' width={1024} height={1024} viewBox="0 0 1024 1024">
+                                    <path fill="currentColor" d="M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h160v64H320zm0 384h384v64H320z"></path>
+                                </svg>
                             </div>
 
                             <input

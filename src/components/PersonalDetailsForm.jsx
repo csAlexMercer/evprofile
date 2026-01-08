@@ -3,10 +3,16 @@ import { useState } from "react";
 export default function PersonalDetailsForm({formData, updateFormData, onContinue}){
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if(errors.phoneNumber || errors.pincode || !formData.fullName || !formData.email || !formData.phoneNumber || !formData.homeAddress || !formData.pincode){
-        //     alert('Please fill in all field');
-        //     return;
-        // }
+        if(errors.phoneNumber){
+            alert('Please enter a valid phone number');
+            return;
+        }else if(errors.pincode){
+            alert('Please enter a valid Pincode');
+            return;
+        }else if(!formData.fullName || !formData.email || !formData.phoneNumber || !formData.homeAddress || !formData.pincode){
+            alert('Please fill in all the fields');
+            return;
+        }
         onContinue();
     }
     const [errors, setErrors] = useState({
@@ -33,7 +39,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
         }))
     }
     return(
-        <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
+        <div className="bg-black/30 lg:bg-black/20 rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
         {/* Logo and Title */}
         <div className="flex flex-col items-center mb-4">
             <div className="mb-2">
@@ -142,8 +148,11 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                 </label>
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    <svg className="h-5 w-5 text-gray-400" width={24} height={24} viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                            <path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4.5m.121 8.621a3 3 0 1 0-4.242 0Q17.506 20.749 19 22q1.577-1.335 2.121-1.879M19 18v.01"></path>
+                            <path d="m3 7l9 6l9-6"></path>
+                        </g>
                     </svg>
                     </div>
                     <input

@@ -2,16 +2,16 @@
 export default function BankDetailsForm({formData, updateFormData, onContinue, onBack}){
     const handleSubmit = (e) => {
         e.preventDefault();
-            // if (!formData.accountHolderName || !formData.bankName || !formData.accountNumber || 
-            //         !formData.ifscCode || !formData.accountType) {
-            //     alert('Please fill in all fields');
-            //     return;
-            // }
+            if (!formData.accountHolderName || !formData.bankName || !formData.accountNumber || 
+                    !formData.ifscCode || !formData.accountType) {
+                alert('Please fill in all fields');
+                return;
+            }
         onContinue();
 
     }
     return (
-        <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
+        <div className="bg-black/30 lg:bg-black/20 rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
             <div className="flex flex-col items-center mb-4">
                 <div className="mb-2">
                     <img src="/logo.png" alt="ChargeFlow" className="h-16" />
@@ -49,8 +49,8 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                     </label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        <svg className="w-5 h-5 text-gray-400" width={24} height={24} viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M2 20h20v2H2zm2-8h2v7H4zm5 0h2v7H9zm4 0h2v7h-2zm5 0h2v7h-2zM2 7l10-5l10 5v4H2zm2 1.236V9h16v-.764l-8-4zM12 8a1 1 0 1 1 0-2a1 1 0 0 1 0 2"></path>
                         </svg>
                         </div>
                         <input
@@ -70,8 +70,8 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                     </label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        <svg className="w-5 h-5 text-gray-400" width={24} height={24} viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M5 16v-5q0-.425.288-.712T6 10t.713.288T7 11v5q0 .425-.288.713T6 17t-.712-.288T5 16m6 0v-5q0-.425.288-.712T12 10t.713.288T13 11v5q0 .425-.288.713T12 17t-.712-.288T11 16m-8 5q-.425 0-.712-.288T2 20t.288-.712T3 19h18q.425 0 .713.288T22 20t-.288.713T21 21zm14-5v-5q0-.425.288-.712T18 10t.713.288T19 11v5q0 .425-.288.713T18 17t-.712-.288T17 16m4-8H2.9q-.375 0-.638-.262T2 7.1v-.55q0-.275.138-.475T2.5 5.75l8.6-4.3q.425-.2.9-.2t.9.2l8.55 4.275q.275.125.413.375t.137.525V7q0 .425-.287.713T21 8"></path>
                         </svg>
                         </div>
                         <input
@@ -91,9 +91,9 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                     </label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <svg className="w-5 h-5 text-gray-400" width={24} height={24} viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M23.277 11.056c-.362-8.68-9.984-13.714-17.32-9.06a11.29 11.29 0 0 0-5.231 10v.507a11.28 11.28 0 0 0 6.258 10.158a.94.94 0 0 0 .413.094a.94.94 0 0 0 .846-.508a.94.94 0 0 0-.414-1.24a9.6 9.6 0 0 1-2.819-2.19a.24.24 0 0 1 0-.253a.24.24 0 0 1 .207-.141h2.434c.093 0 .178.055.216.14q.254.583.535 1.157a.94.94 0 0 0 .827.507a.94.94 0 0 0 .827-1.334c-.15-.31-.3-.62-.432-.94a.22.22 0 0 1 0-.17a1 1 0 0 0 0-.29a.94.94 0 0 0-.47-.809a.23.23 0 0 1-.113-.131a15.2 15.2 0 0 1-.723-3.298a.22.22 0 0 1 .066-.179a.2.2 0 0 1 .169-.084h.63a.94.94 0 1 0 0-1.88h-.62a.22.22 0 0 1-.17-.084a.2.2 0 0 1-.056-.179c.094-1.045.318-2.074.667-3.063a.24.24 0 0 1 .225-.16h5.638a.235.235 0 0 1 .216.16q.314.879.489 1.795a.94.94 0 0 0 .94.751q.089.015.178 0a.94.94 0 0 0 .724-1.08a16 16 0 0 0-.31-1.306a.24.24 0 0 1 0-.207a.24.24 0 0 1 .188-.094h2.696c.084.001.16.048.198.122a9.3 9.3 0 0 1 1.212 3.524a.947.947 0 1 0 1.88-.235M8.412 3.783a.235.235 0 0 1 .291.348q-.45.714-.817 1.475a.24.24 0 0 1-.207.132H6.072a.24.24 0 0 1-.225-.16a.24.24 0 0 1 .065-.263a9.9 9.9 0 0 1 2.5-1.532m-1.363 12.46a.22.22 0 0 1 0 .197a.22.22 0 0 1-.188.094H3.62a.23.23 0 0 1-.207-.132a9.4 9.4 0 0 1-.808-3.147a.24.24 0 0 1 .056-.179a.25.25 0 0 1 .179-.075h3.4c.123 0 .225.094.235.216c.1 1.024.292 2.036.573 3.026m-.592-5.31a.235.235 0 0 1-.235.217h-3.27a.23.23 0 0 1-.178-.075a.25.25 0 0 1-.056-.198a9.4 9.4 0 0 1 1.184-3.176a.24.24 0 0 1 .206-.122h2.66c.073 0 .143.035.187.094a.22.22 0 0 1 0 .207c-.277.996-.444 2.02-.498 3.054m3.862-5.196a.24.24 0 0 1-.197-.122a.26.26 0 0 1 0-.235a16 16 0 0 1 1.626-2.236a.25.25 0 0 1 .169-.056h.244c.067 0 .132.026.179.075A15.5 15.5 0 0 1 13.964 5.4a.22.22 0 0 1 0 .235a.22.22 0 0 1-.197.122Zm5.046-1.606a.25.25 0 0 1 0-.282a.235.235 0 0 1 .263-.066c.91.379 1.756.895 2.51 1.532a.25.25 0 0 1 .074.263a.24.24 0 0 1-.225.16h-1.588a.24.24 0 0 1-.216-.141a14 14 0 0 0-.818-1.466" strokeWidth={0.5} stroke="currentColor"></path>
+                            <path fill="currentColor" d="M11.691 16.468h1.41s.235 0 .235.235v4.229s0 .235-.235.235h-1.41s-.235 0-.235-.235v-4.229s0-.235.235-.235m3.759 0h1.41s.234 0 .234.235v4.229s0 .235-.235.235h-1.41s-.234 0-.234-.235v-4.229s0-.235.235-.235m3.758 0h1.41s.235 0 .235.235v4.229s0 .235-.235.235h-1.41s-.234 0-.234-.235v-4.229s0-.235.234-.235m2.19 5.873H11.062a.71.71 0 0 0 0 1.419h10.336a.705.705 0 0 0 0-1.41Zm.611-7.752l-5.432-2.716a.94.94 0 0 0-.845 0L10.31 14.59a.45.45 0 0 0-.244.526a.46.46 0 0 0 .45.357h11.276a.47.47 0 0 0 .216-.883" strokeWidth={0.5} stroke="currentColor"></path>
                         </svg>
                         </div>
                         <input
@@ -113,8 +113,8 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                     </label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        <svg className="h-5 w-5 text-gray-400" width={24} height={24} viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M4 4a2 2 0 0 1 2-2h8a1 1 0 0 1 .707.293l5 5A1 1 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm13.586 4L14 4.414V8zM12 4H6v16h12V10h-5a1 1 0 0 1-1-1zm-4 9a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1" strokeWidth={0.5} stroke="currentColor"></path>
                         </svg>
                         </div>
                         <select

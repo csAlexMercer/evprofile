@@ -1,5 +1,5 @@
 'use client';
-import {User, Landmark, IdCard, Check} from 'lucide-react'
+
 export default function ProgressIndicator({ currentStep }) {
     const steps = [
         { number: 1, label: 'Personal Details', icon: 'user' },
@@ -11,19 +11,27 @@ export default function ProgressIndicator({ currentStep }) {
     const getStepIcon = (step) => {
         if (step.number === 1) {
         return (
-            <User className="w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9"/>
+            <svg className='w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9' width={24} height={24} viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"></path>
+            </svg>
         );
         } else if (step.number === 2) {
         return (
-            <IdCard className="w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9"/>
+            <svg className='w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9' width={24} height={24} viewBox="0 0 24 24">
+                <path fill="currentColor" d="M14 13h5v-2h-5zm0-3h5V8h-5zm-9 6h8v-.55q0-1.125-1.1-1.787T9 13t-2.9.663T5 15.45zm4-4q.825 0 1.413-.587T11 10t-.587-1.412T9 8t-1.412.588T7 10t.588 1.413T9 12m-5 8q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20z"></path>
+            </svg>
         );
         } else if (step.number === 3) {
         return (
-            <Landmark className='w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9'/>
+            <svg className='w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9' width={24} height={24} viewBox="0 0 24 24">
+                <path fill="currentColor" d="M11.5 1L2 6v2h19V6m-5 4v7h3v-7M2 22h19v-3H2m8-9v7h3v-7m-9 0v7h3v-7z"></path>
+            </svg>
         );
         } else {
         return (
-            <Check className='w-5 h-5 md:w-7 md:h-7 lg:w-9 lg:h-9'/>
+            <svg className='w-6 h-6 md:w-7 md:h-7 lg:w-9 lg:h-9' width={24} height={24} viewBox="0 0 24 24">
+                <path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"></path>
+            </svg>
         );
         }
     };

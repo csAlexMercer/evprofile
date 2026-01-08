@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Camera, User, Eye, EyeOff, Lock } from 'lucide-react';
 import OTPVerification from './OTPVerification';
 import SuccessModal from './SuccessModal';
 import CameraCaptureModal from './CameraCaptureModal';
@@ -40,33 +39,33 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // // Validation
-    // if (!formData.password || !formData.confirmPassword) {
-    //   alert('Please enter password');
-    //   return;
-    // }
+    // Validation
+    if (!formData.password || !formData.confirmPassword) {
+      alert('Please enter password');
+      return;
+    }
     
-    // if (formData.password.length < 8) {
-    //   alert('Password must be at least 8 characters long');
-    //   return;
-    // }
+    if (formData.password.length < 8) {
+      alert('Password must be at least 8 characters long');
+      return;
+    }
     
-    // if (formData.password !== formData.confirmPassword) {
-    //   alert('Passwords do not match');
-    //   return;
-    // }
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
     
-    // if (!formData.agreeToTerms) {
-    //   alert('Please agree to Terms of Service and Privacy Policy');
-    //   return;
-    // }
+    if (!formData.agreeToTerms) {
+      alert('Please agree to Terms of Service and Privacy Policy');
+      return;
+    }
     
-    // if (!formData.liveSelfieCaptured) {
-    //   alert('Please capture live selfie for verification');
-    //   return;
-    // }
+    if (!formData.liveSelfieCaptured) {
+      alert('Please capture live selfie for verification');
+      return;
+    }
 
-    // // All validations passed
+    // All validations passed
     setShowOTP(true);
     
   };
@@ -81,10 +80,11 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
   };
   const handleSuccessContinue = () => {
     setShowSuccess(false);
+    console.log('Final form data:',formData);
   };
 
   return (
-    <div className="bg-white/75 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
+    <div className="bg-black/30 lg:bg-black/20 rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
       {/* Logo and Title */}
       <div className="flex flex-col items-center mb-4">
         <div className="mb-2">
@@ -103,7 +103,9 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className='h-5 w-5 text-gray-400'/>
+              <svg className= 'w-6 h-6 text-gray-400'xmlns="http://www.w3.org/2000/svg" width='24' height='24' viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 12h1.4a.6.6 0 0 1 .6.6v6.8a.6.6 0 0 1-.6.6H6.6a.6.6 0 0 1-.6-.6v-6.8a.6.6 0 0 1 .6-.6H8m8 0V8c0-1.333-.8-4-4-4S8 6.667 8 8v4m8 0H8"></path>
+              </svg>
             </div>
             <input
               type={showPassword ? 'text' : 'password'}
@@ -118,9 +120,13 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
             >
               {showPassword ? (
-                <EyeOff className='h-5 w-5 text-gray-400 hover:text-gray-600'/>
+                <svg className='h-5 w-5 text-gray-400' width={24} height={24} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M2 5.27L3.28 4L20 20.72L18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58c-5 0-9.27-3.11-11-7.5c.69-1.76 1.79-3.31 3.19-4.54zM12 9a3 3 0 0 1 3 3a3 3 0 0 1-.17 1L11 9.17A3 3 0 0 1 12 9m0-4.5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-4 5.19l-1.42-1.43A9.86 9.86 0 0 0 20.82 12A9.82 9.82 0 0 0 12 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97M3.18 12A9.82 9.82 0 0 0 12 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 0 1 9 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13" strokeWidth={0.5} stroke="currentColor"></path>
+                </svg>
               ) : (
-                <Eye className='h-5 w-5 text-gray-400 hover:text-gray-600'/>
+                <svg className='h-5 w-5 text-gray-400' width={24} height={24} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0" strokeWidth={0.5} stroke="currentColor"></path>
+                </svg>
               )}
             </button>
           </div>
@@ -133,7 +139,9 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className='h-5 w-5 text-gray-400'/>
+              <svg className= 'w-6 h-6 text-gray-400'xmlns="http://www.w3.org/2000/svg" width='24' height='24' viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 12h1.4a.6.6 0 0 1 .6.6v6.8a.6.6 0 0 1-.6.6H6.6a.6.6 0 0 1-.6-.6v-6.8a.6.6 0 0 1 .6-.6H8m8 0V8c0-1.333-.8-4-4-4S8 6.667 8 8v4m8 0H8"></path>
+              </svg>
             </div>
             <input
               type={showConfirmPassword ? 'text' : 'password'}
@@ -148,9 +156,13 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
             >
               {showConfirmPassword ? (
-                <EyeOff className='h-5 w-5 text-gray-400 hover:text-gray-600'/>
+                <svg className='h-5 w-5 text-gray-400' width={24} height={24} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M2 5.27L3.28 4L20 20.72L18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58c-5 0-9.27-3.11-11-7.5c.69-1.76 1.79-3.31 3.19-4.54zM12 9a3 3 0 0 1 3 3a3 3 0 0 1-.17 1L11 9.17A3 3 0 0 1 12 9m0-4.5c5 0 9.27 3.11 11 7.5a11.8 11.8 0 0 1-4 5.19l-1.42-1.43A9.86 9.86 0 0 0 20.82 12A9.82 9.82 0 0 0 12 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97M3.18 12A9.82 9.82 0 0 0 12 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 0 1 9 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13" strokeWidth={0.5} stroke="currentColor"></path>
+                </svg>
               ) : (
-                <Eye className='h-5 w-5 text-gray-400 hover:text-gray-600'/>
+                <svg className='h-5 w-5 text-gray-400' width={24} height={24} viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0" strokeWidth={0.5} stroke="currentColor"></path>
+                </svg>
               )}
             </button>
           </div>
@@ -174,11 +186,11 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
           />
           <label htmlFor="terms" className="text-sm text-gray-700">
             I agree to the{' '}
-            <span className="text-green-600 font-medium cursor-pointer hover:underline">
+            <span className="text-[#38EF0A] font-medium cursor-pointer hover:underline">
               Terms Of Service
             </span>{' '}
             and{' '}
-            <span className="text-green-600 font-medium cursor-pointer hover:underline">
+            <span className="text-[#38EF0A] font-medium cursor-pointer hover:underline">
               Privacy Policy
             </span>
             *
@@ -203,7 +215,9 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <User className='w-8 h-8 text-gray-400'/>
+                  <svg className='h-10 w-10 text-gray-400' width={24} height={24} viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"></path>
+                  </svg>
                 )}
               </div>  
               <span className="text-sm text-gray-600">
@@ -215,7 +229,9 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
               onClick={handleCaptureSelfie}
               className="bg-[#38EF0A] hover:bg-[#2dd908] text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm font-medium"
             >
-              <Camera className='w-5 h-5'/>
+              <svg className="h-5 w-5 text-white" width={24} height={24} viewBox="0 0 24 24">
+                <path fill="currentColor" strokeWidth={0.5} stroke="currentColor" d="M11.5 8C14 8 16 10 16 12.5S14 17 11.5 17S7 15 7 12.5S9 8 11.5 8m0 1A3.5 3.5 0 0 0 8 12.5a3.5 3.5 0 0 0 3.5 3.5a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 11.5 9M5 5h2l2-2h5l2 2h2a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m4.41-1l-2 2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2.41l-2-2z"></path>
+              </svg>
               {capturedImage ? 'Recapture' : 'Capture Live Selfie'}
             </button>
           </div>
