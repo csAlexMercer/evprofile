@@ -14,6 +14,14 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
   const [showCamera, setShowCamera] = useState(false);
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
+  const [confirmError, setConfirmError] = useState(false);
+
+  const validateConfirmPassword = (value) => {
+    const password = formData.password;
+    if(!value) return false;
+    if(!password) return false;
+    return !password.startsWith(value);
+  }
 
   const handleCaptureSelfie = () => {
     setShowCamera(true);
@@ -146,9 +154,14 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
             <input
               type={showConfirmPassword ? 'text' : 'password'}
               value={formData.confirmPassword}
-              onChange={(e) => updateFormData('confirmPassword', e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value 
+                updateFormData('confirmPassword', value)
+                setConfirmError(validateConfirmPassword(value))
+              }}
               placeholder="Confirm Password"
-              className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 shadow-4xl rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
+              className={`w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 shadow-4xl rounded-lg border border-gray-300 focus:ring-2 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow
+                ${confirmError ? 'focus:ring-red-500' : 'focus:ring-green-500'}`}
             />
             <button
               type="button"
