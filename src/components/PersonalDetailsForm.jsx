@@ -66,6 +66,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                     <input
                     type="text"
                     value={formData.fullName}
+                    maxLength={40}
                     onChange={(e) => updateFormData('fullName', e.target.value)}
                     placeholder="Enter Your Full Name"
                     className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 shadow-4xl rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
@@ -87,6 +88,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                     <input
                     type="email"
                     value={formData.email}
+                    maxLength={20}
                     onChange={(e) => updateFormData('email', e.target.value)}
                     placeholder="your.email@example.com"
                     className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
@@ -108,7 +110,9 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                     <input
                     type="tel"
                     value={formData.phoneNumber}
-                    onChange={(e) => updateFormData('phoneNumber', e.target.value)}
+                    maxLength={10}
+                    onChange={(e) => {const digitsOnly = e.target.value.replace(/\D/g, '')
+                        updateFormData('phoneNumber', digitsOnly)}}
                     onBlur={handlePhoneBlur}
                     placeholder="Enter Your Phone Number"
                     className={`w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md
@@ -134,6 +138,7 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                     <input
                     type="text"
                     value={formData.homeAddress}
+                    maxLength={80}
                     onChange={(e) => updateFormData('homeAddress', e.target.value)}
                     placeholder="Enter Your Home Address"
                     className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
@@ -158,7 +163,9 @@ export default function PersonalDetailsForm({formData, updateFormData, onContinu
                     <input
                     type="text"
                     value={formData.pincode}
-                    onChange={(e) => updateFormData('pincode', e.target.value)}
+                    maxLength={6}
+                    onChange={(e) => {const digitsOnly = e.target.value.replace(/\D/g, '')
+                        updateFormData('pincode', digitsOnly)}}
                     onBlur={handlePincodeBlur}
                     placeholder="Enter Your Pincode"
                     className={`w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow

@@ -118,6 +118,7 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
             <input
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
+              maxLength={20}
               onChange={(e) => updateFormData('password', e.target.value)}
               placeholder="Password"
               className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 shadow-4xl rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
@@ -154,6 +155,7 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
             <input
               type={showConfirmPassword ? 'text' : 'password'}
               value={formData.confirmPassword}
+              maxLength={20}
               onChange={(e) => {
                 const value = e.target.value 
                 updateFormData('confirmPassword', value)
@@ -161,7 +163,7 @@ export default function AccountActivationForm({ formData, updateFormData, onBack
               }}
               placeholder="Confirm Password"
               className={`w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 shadow-4xl rounded-lg border border-gray-300 focus:ring-2 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow
-                ${confirmError ? 'focus:ring-red-500' : 'focus:ring-green-500'}`}
+                ${confirmError ? 'focus:ring-red-500 border-red-500' : 'focus:ring-green-500'}`}
             />
             <button
               type="button"

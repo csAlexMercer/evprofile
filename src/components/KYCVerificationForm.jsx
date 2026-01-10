@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from "react";
+
 export default function KYCVerificationForm({formData, updateFormData, onContinue, onBack}){
     const handleFileUpload = (fileField) => (e) => {
         const file = e.target.files[0];
@@ -7,6 +9,11 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
         updateFormData(fileField, file);
         }
     };
+    const [errors, setErrors] = useState({
+        aadhaarNumber: false,
+        panNumber: false,
+    });
+
     const isFormValid =
         formData.aadhaarNumber &&
         formData.panNumber &&
@@ -20,7 +27,13 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
 
     const handleSubmit = (e) => {
         e.preventDefault();
-            if (!isFormValid) {
+            if(errors.aadhaarNumber){
+                alert('Enter a valid Aadhaar Number');
+                return;
+            }else if(errors.panNumber){
+                alert('Enter a valid Pan Number');
+                return
+            }else if (!isFormValid) {
                 alert('Please fill in all fields and upload required documents');
                 return;
             }
@@ -46,8 +59,26 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
             </label>
         </div>
     );
+    const validateAadhaarNumber = (value) => {
+        return /^\d{12}$/.test(value)
+    }
+    const validatePanNumber = (value) => {
+        return /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(value)
+    }
 
+    const handlePanBlur = () => {
+        setErrors((prev) => ({
+            ...prev,
+            panNumber: !validatePanNumber(formData.panNumber),
+        }))
+    }
 
+    const handleAadhaarBlur = () => {
+        setErrors((prev) => ({
+            ...prev,
+            aadhaarNumber: !validateAadhaarNumber(formData.aadhaarNumber),
+        }))
+    }
 
     return (
         <div className="bg-black/30 lg:bg-black/20 rounded-2xl shadow-2xl w-full max-w-[480] min-h-[620px] lg:w-[480px] lg:h-[669px] lg:min-h-0 p-4 md:p-6 flex flex-col">
@@ -85,11 +116,15 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                                 <input
                                     type="text"
                                     value={formData.aadhaarNumber}
+                                    maxLength={12}
+                                    onBlur={handleAadhaarBlur}
                                     onChange={(e) => {const digitsOnly = e.target.value.replace(/\D/g, '')
                                         updateFormData('aadhaarNumber', digitsOnly)
                                     }}
+
                                     placeholder="Aadhaar Card Number"
-                                    className="w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    className={`w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2  focus:border-transparent outline-none
+                                        ${errors.aadhaarNumber ? 'focus:ring-red-500 border-red-500':'focus:ring-green-500'}`}
                                 />
                             </div>
 
@@ -124,9 +159,12 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                                 <input
                                     type="text"
                                     value={formData.panNumber}
-                                    onChange={(e) => updateFormData('panNumber', e.target.value)}
+                                    maxLength={10}
+                                    onBlur={handlePanBlur}
+                                    onChange={(e) => updateFormData('panNumber', e.target.value.toUpperCase())}
                                     placeholder="PAN Card Number"
-                                    className="w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    className={`w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:border-transparent outline-none
+                                        ${errors.panNumber ? 'focus:ring-red-500 border-red-500':'focus:ring-green-500 border-gray-300'}`}
                                 />
                             </div>
 
@@ -162,7 +200,8 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                                 <input
                                     type="text"
                                     value={formData.drivingLicenseNumber}
-                                    onChange={(e) => updateFormData('drivingLicenseNumber', e.target.value)}
+                                    maxLength={16}
+                                    onChange={(e) => updateFormData('drivingLicenseNumber', e.target.value.toUpperCase())}
                                     placeholder="Driving License Number"
                                     className="w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
                                 />
@@ -200,7 +239,8 @@ export default function KYCVerificationForm({formData, updateFormData, onContinu
                                 <input
                                     type="text"
                                     value={formData.evPlateNumber}
-                                    onChange={(e) => updateFormData('evPlateNumber', e.target.value)}
+                                    maxLength={16}
+                                    onChange={(e) => updateFormData('evPlateNumber', e.target.value.toUpperCase())}
                                     placeholder="EV Plate Number"
                                     className="w-full h-12 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg shadow-md hover:shadow-lg focus:shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
                                 />

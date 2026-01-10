@@ -34,6 +34,7 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                         </div>
                         <input
                         type="text"
+                        maxLength={40}
                         value={formData.accountHolderName}
                         onChange={(e) => updateFormData('accountHolderName', e.target.value)}
                         placeholder="Enter Account Holder Name"
@@ -55,6 +56,7 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                         </div>
                         <input
                         type="text"
+                        maxLength={30}
                         value={formData.bankName}
                         onChange={(e) => updateFormData('bankName', e.target.value)}
                         placeholder="Bank Name"
@@ -76,8 +78,10 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                         </div>
                         <input
                         type="text"
+                        maxLength={25}
                         value={formData.accountNumber}
-                        onChange={(e) => updateFormData('accountNumber', e.target.value)}
+                        onChange={(e) => {const digitsOnly = e.target.value.replace(/\D/g, '')
+                            updateFormData('accountNumber', digitsOnly)}}
                         placeholder="Account Number"
                         className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md"
                         />
@@ -98,8 +102,9 @@ export default function BankDetailsForm({formData, updateFormData, onContinue, o
                         </div>
                         <input
                         type="text"
+                        maxLength={11}
                         value={formData.ifscCode}
-                        onChange={(e) => updateFormData('ifscCode', e.target.value)}
+                        onChange={(e) => updateFormData('ifscCode', e.target.value.toUpperCase())}
                         placeholder="IFSC Code"
                         className="w-full pl-10 pr-4 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-md hover:shadow-lg focus:shadow-lg transition-shadow"
                         />
